@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="lib/excelUpload.js"></script>
+    <script src="lib/fontAwesome.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>SKU Verifier</title>
+    <link rel="icon" href="img/tiburon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <audio
+      id="notification"
+      src="audio/Notification.mp3"
+      controls
+      style="display: none"
+    ></audio>
+
+    <div class="container">
+      <div class="left-cont">
+        <input type="file" id="input" accept=".xlsx, .xls" />
+        <label for="input" class="button">
+          <p>Upload</p>
+          <div class="icon-cont" style="border-left: 2px solid #986767">
+            <svg
+              class="svgUpload"
+              x="0px"
+              y="0px"
+              viewBox="0 0 173 305"
+              style="enable-background: new 0 0 173 305"
+              xml:space="preserve"
+            >
+              <style type="text/css">
+                .st0 {
+                  filter: url(#Adobe_OpacityMaskFilter);
+                }
+                .st1 {
+                  fill: var(--button-icon);
+                }
+                .st2 {
+                  mask: url(#SVGID_1_);
+                }
+                .st3 {
+                  fill: none;
+                  stroke: var(--button-icon);
+                  stroke-width: 2;
+                  stroke-miterlimit: 10;
+                }
+                .st4 {
+                  fill: none;
+                  stroke: var(--button-icon);
+                  stroke-width: 3;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <g id="Suelo">
+                <defs>
+                  <filter
+                    id="Adobe_OpacityMaskFilter"
+                    filterUnits="userSpaceOnUse"
+                    x="20.49"
+                    y="116.96"
+                    width="129.01"
+                    height="15.08"
+                  >
+                    <feColorMatrix
+                      type="matrix"
+                      values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"
+                      color-interpolation-filters="sRGB"
+                      result="source"
+                    />
+                    <feFlood
+                      style="flood-color: white; flood-opacity: 1"
+                      result="back"
+                    />
+                    <feBlend in="source" in2="back" mode="normal" />
+                  </filter>
+                </defs>
+                <mask
+                  maskUnits="userSpaceOnUse"
+                  x="20.49"
+                  y="116.96"
+                  width="129.01"
+                  height="15.08"
+                  id="SVGID_1_"
+                >
+                  <g class="st0">
+                    <ellipse
+                      class="st1"
+                      cx="136.57"
+                      cy="124"
+                      rx="3.43"
+                      ry="3"
+                    />
+                  </g>
+                </mask>
+                <g class="st2">
+                  <g>
+                    <path
+                      class="st1"
+                      d="M28,132c3.78,0,7.56,0,11.33,0c9.07,0,18.15,0,27.22,0c10.98,0,21.95,0,32.93,0c9.49,0,18.98,0,28.47,0
+                            c4.61,0,9.24,0.09,13.85,0c0.07,0,0.13,0,0.2,0c3.92,0,7.68-3.45,7.5-7.5c-0.18-4.06-3.3-7.5-7.5-7.5c-3.78,0-7.56,0-11.33,0
+                            c-9.07,0-18.15,0-27.22,0c-10.98,0-21.95,0-32.93,0c-9.49,0-18.98,0-28.47,0c-4.61,0-9.24-0.09-13.85,0c-0.07,0-0.13,0-0.2,0
+                            c-3.92,0-7.68,3.45-7.5,7.5C20.68,128.56,23.8,132,28,132L28,132z"
+                    />
+                  </g>
+                </g>
+              </g>
+              <g id="Flecha">
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M79,37c0,9.23,0,18.46,0,27.69c0,14.71,0,29.41,0,44.12c0,3.37,0,6.74,0,10.11c0,3.14,2.76,6.15,6,6
+                            c3.25-0.15,6-2.64,6-6c0-9.23,0-18.46,0-27.69c0-14.71,0-29.41,0-44.12c0-3.37,0-6.74,0-10.11c0-3.14-2.76-6.15-6-6
+                            C81.75,31.15,79,33.64,79,37L79,37z"
+                    />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M58.24,71.24c3.48-3.71,6.97-7.41,10.45-11.12c5.56-5.92,11.12-11.83,16.69-17.75
+                            c1.29-1.37,2.57-2.74,3.86-4.11c-2.83,0-5.66,0-8.49,0c3.45,3.7,6.9,7.4,10.35,11.1c5.53,5.93,11.07,11.87,16.6,17.8
+                            c1.27,1.36,2.53,2.71,3.8,4.07c2.15,2.3,6.35,2.33,8.49,0c2.26-2.46,2.29-6.03,0-8.49c-3.45-3.7-6.9-7.4-10.35-11.1
+                            c-5.53-5.93-11.07-11.87-16.6-17.8c-1.27-1.36-2.53-2.71-3.8-4.07c-2.16-2.32-6.32-2.3-8.49,0c-3.48,3.71-6.97,7.41-10.45,11.12
+                            c-5.56,5.92-11.12,11.83-16.69,17.75c-1.29,1.37-2.57,2.74-3.86,4.11c-2.15,2.29-2.44,6.25,0,8.49
+                            C52.09,73.39,55.95,73.69,58.24,71.24L58.24,71.24z"
+                    />
+                  </g>
+                </g>
+              </g>
+              <g id="Hoja1">
+                <path class="st3" d="M43.5,208.75" />
+                <polyline
+                  class="st4"
+                  points="43.5,218 43.5,180.5 99,180.5 99,208.17 126.21,208.17 126.21,291.91 43.5,291.91 43.5,273 	"
+                />
+                <rect x="25.5" y="217.5" class="st4" width="55" height="55" />
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M40.86,238.12c5.7,5.69,11.39,11.38,17.09,17.07c0.81,0.81,1.62,1.62,2.43,2.43c1.15,1.15,3.1,1.15,4.24,0
+                            c1.15-1.15,1.15-3.09,0-4.24c-5.7-5.69-11.39-11.38-17.09-17.07c-0.81-0.81-1.62-1.62-2.43-2.43c-1.15-1.15-3.1-1.15-4.24,0
+                            C39.71,235.03,39.71,236.97,40.86,238.12L40.86,238.12z"
+                    />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M45.1,257.62c5.7-5.69,11.39-11.38,17.09-17.07c0.81-0.81,1.62-1.62,2.43-2.43c1.15-1.15,1.15-3.1,0-4.24
+                            c-1.15-1.15-3.09-1.15-4.24,0c-5.7,5.69-11.39,11.38-17.09,17.07c-0.81,0.81-1.62,1.62-2.43,2.43c-1.15,1.15-1.15,3.1,0,4.24
+                            C42.01,258.77,43.95,258.77,45.1,257.62L45.1,257.62z"
+                    />
+                  </g>
+                </g>
+                <polygon
+                  class="st1"
+                  points="100.36,178.97 100.11,206.89 127.59,206.7 	"
+                />
+              </g>
+              <g id="Hoja2">
+                <path class="st3" d="M43.5,208.75" />
+                <polyline
+                  class="st4"
+                  points="43.5,218 43.5,180.5 99,180.5 99,208.17 126.21,208.17 126.21,291.91 43.5,291.91 43.5,273 	"
+                />
+                <rect x="25.5" y="217.5" class="st4" width="55" height="55" />
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M40.86,238.12c5.7,5.69,11.39,11.38,17.09,17.07c0.81,0.81,1.62,1.62,2.43,2.43c1.15,1.15,3.1,1.15,4.24,0
+                            c1.15-1.15,1.15-3.09,0-4.24c-5.7-5.69-11.39-11.38-17.09-17.07c-0.81-0.81-1.62-1.62-2.43-2.43c-1.15-1.15-3.1-1.15-4.24,0
+                            C39.71,235.03,39.71,236.97,40.86,238.12L40.86,238.12z"
+                    />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      class="st1"
+                      d="M45.1,257.62c5.7-5.69,11.39-11.38,17.09-17.07c0.81-0.81,1.62-1.62,2.43-2.43c1.15-1.15,1.15-3.1,0-4.24
+                            c-1.15-1.15-3.09-1.15-4.24,0c-5.7,5.69-11.39,11.38-17.09,17.07c-0.81,0.81-1.62,1.62-2.43,2.43c-1.15,1.15-1.15,3.1,0,4.24
+                            C42.01,258.77,43.95,258.77,45.1,257.62L45.1,257.62z"
+                    />
+                  </g>
+                </g>
+                <polygon
+                  class="st1"
+                  points="100.36,178.97 100.11,206.89 127.59,206.7 	"
+                />
+              </g>
+            </svg>
+          </div>
+        </label>
+        <div class="align-data upload-cont">
+          <table>
+            <tr>
+              <td class="header">File</td>
+              <td class="header">Type</td>
+            </tr>
+            <tr id="fila1">
+              <td class="file-name" id="file1">-</td>
+              <td class="upload-result" id="file1-type">-</td>
+            </tr>
+            <tr>
+              <td class="file-name" id="file2">-</td>
+              <td class="upload-result" id="file2-type">-</td>
+            </tr>
+          </table>
+          <hr />
+          <table>
+            <tr>
+              <td class="upload-name"># SKU:</td>
+              <td class="upload-result" id="result-sku">-</td>
+            </tr>
+            <tr>
+              <td class="upload-name"># SKU filtered:</td>
+              <td class="upload-result" id="result-filtered">-</td>
+            </tr>
+            <tr>
+              <td class="upload-name"># Description:</td>
+              <td class="upload-result" id="result-description">-</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="mid-line"></div>
+      <div class="right-cont">
+        <label class="button" id="check">
+          <div class="icon-cont" style="border-right: 2px solid #986767">
+            <svg
+              class="svgDownload"
+              x="0px"
+              y="0px"
+              viewBox="0 0 110.98 124.74"
+              style="enable-background: new 0 0 110.98 124.74"
+              xml:space="preserve"
+            >
+              <style type="text/css">
+                .st5 {
+                  fill: none;
+                  stroke: var(--button-icon);
+                  stroke-width: 2;
+                  stroke-miterlimit: 10;
+                }
+                .st6 {
+                  fill: none;
+                  stroke: var(--button-icon);
+                  stroke-width: 5;
+                  stroke-miterlimit: 10;
+                }
+                .st7 {
+                  filter: url(#Adobe_OpacityMaskFilter2);
+                }
+                .st8 {
+                  stroke: #000000;
+                  stroke-width: 2;
+                  stroke-miterlimit: 10;
+                }
+                .st9 {
+                  mask: url(#SVGID_2_);
+                  fill: var(--button-icon);
+                }
+                .st60 {
+                  fill: var(--button-icon);
+                }
+              </style>
+              <g id="Layer_4"></g>
+              <g id="SkuFile">
+                <path class="st5" d="M14.24,34.03" />
+                <polyline
+                  class="st6"
+                  points="96.95,86.36 96.95,117.19 14.24,117.19 14.24,86.36 	"
+                />
+                <polyline
+                  class="st6"
+                  points="14.24,53.43 14.24,5.78 69.74,5.78 69.74,33.45 96.95,33.45 96.95,53.43 	"
+                />
+                <defs>
+                  <filter
+                    id="Adobe_OpacityMaskFilter2"
+                    filterUnits="userSpaceOnUse"
+                    x="6.89"
+                    y="53.43"
+                    width="97.15"
+                    height="32.94"
+                  >
+                    <feFlood
+                      style="flood-color: white; flood-opacity: 1"
+                      result="back"
+                    />
+                    <feBlend in="SourceGraphic" in2="back" mode="normal" />
+                  </filter>
+                </defs>
+                <mask
+                  maskUnits="userSpaceOnUse"
+                  x="6.89"
+                  y="53.43"
+                  width="97.15"
+                  height="32.94"
+                  id="SVGID_2_"
+                >
+                  <g class="st7">
+                    <g>
+                      <path
+                        class="st8"
+                        d="M33.06,76.12c1.13,0.7,2.78,1.28,4.52,1.28c2.58,0,4.09-1.36,4.09-3.33c0-1.83-1.04-2.87-3.68-3.89
+                          c-3.19-1.13-5.16-2.78-5.16-5.54c0-3.05,2.52-5.31,6.32-5.31c2,0,3.45,0.46,4.32,0.96l-0.7,2.06c-0.64-0.35-1.94-0.93-3.71-0.93
+                          c-2.67,0-3.68,1.6-3.68,2.93c0,1.83,1.19,2.73,3.89,3.77c3.31,1.28,4.99,2.87,4.99,5.74c0,3.02-2.23,5.63-6.85,5.63
+                          c-1.89,0-3.94-0.55-4.99-1.25L33.06,76.12z"
+                      />
+                      <path
+                        class="st8"
+                        d="M47.71,59.64h2.52v9.43h0.09c0.52-0.75,1.04-1.45,1.54-2.09l5.98-7.34h3.13l-7.08,8.3l7.63,11.25h-2.99
+                          l-6.44-9.6l-1.86,2.15v7.46h-2.52V59.64z"
+                      />
+                      <path
+                        class="st8"
+                        d="M65.95,59.64v11.57c0,4.38,1.94,6.24,4.55,6.24c2.9,0,4.76-1.92,4.76-6.24V59.64h2.55v11.4
+                          c0,6-3.16,8.47-7.4,8.47c-4,0-7.02-2.29-7.02-8.35V59.64H65.95z"
+                      />
+                    </g>
+                  </g>
+                </mask>
+                <rect
+                  x="6.89"
+                  y="53.43"
+                  class="st9"
+                  width="97.15"
+                  height="32.94"
+                />
+                <polygon
+                  class="st60"
+                  points="72.17,3.3 71.01,31.94 99.46,31.02 	"
+                />
+              </g>
+            </svg>
+          </div>
+          <p>Process</p>
+        </label>
+        <div class="align-data download-cont">
+          <a id="download-link"></a>
+          <table>
+            <tr>
+              <td colspan="2" class="header">Recognized</td>
+            </tr>
+            <tr>
+              <td class="download-name">Match</td>
+              <td class="download-result" id="result-match">-</td>
+            </tr>
+            <tr>
+              <td class="download-name">Comercial</td>
+              <td class="download-result" id="result-comercial">-</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="download-result download-total" id="result-recognized">
+                -
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="header">Unrecognized</td>
+            </tr>
+            <tr>
+              <td class="download-name">No Match</td>
+              <td class="download-result" id="result-nomatch">-</td>
+            </tr>
+            <tr>
+              <td class="download-name">Validate</td>
+              <td class="download-result" id="result-validate">-</td>
+            </tr>
+            <tr>
+              <td class="download-name">No Sku</td>
+              <td class="download-result" id="result-nosku">-</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td
+                class="download-result download-total"
+                id="result-unrecognized"
+              >
+                -
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
